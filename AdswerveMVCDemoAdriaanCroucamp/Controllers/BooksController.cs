@@ -71,5 +71,15 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
 
             return View(book);
         }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var book = db.Books.Find(id);
+            db.Books.Remove(book);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
