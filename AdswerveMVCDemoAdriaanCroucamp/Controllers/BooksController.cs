@@ -22,6 +22,25 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
 
         }
 
+        // GET: Books/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var book = db.Books.Find(id);
+
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(book);
+        }
+
+
         // GET method for edit button
         public ActionResult Edit(int? id)
         {
@@ -49,7 +68,8 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
             {
                 db.Entry(book).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = book.Book_Id });
+
             }
             return View(book);
         }
@@ -79,7 +99,30 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
             var book = db.Books.Find(id);
             db.Books.Remove(book);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { id = book.Book_Id });
         }
+
+        // GET: Books/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Books/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Books.Add(book);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(book);
+        }
+
+
     }
 }
