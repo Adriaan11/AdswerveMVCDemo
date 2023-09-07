@@ -14,7 +14,6 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET method for list/index
         public ActionResult Index()
         {
             // Retrieve a list of books from the database
@@ -22,7 +21,6 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
             return View(books);
         }
 
-        // GET: Books/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -44,7 +42,6 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
             return View(book);
         }
 
-        // GET method for the edit page
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -66,7 +63,6 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
             return View(book);
         }
 
-        // POST method to update book
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Book book)
@@ -85,7 +81,6 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
             return View(book);
         }
 
-        // GET: Books/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -123,7 +118,6 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Books/Create
         public ActionResult Create()
         {
             // Display the page to create a new book
