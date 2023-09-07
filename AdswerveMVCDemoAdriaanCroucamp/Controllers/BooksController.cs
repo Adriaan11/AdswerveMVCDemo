@@ -99,7 +99,7 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
             var book = db.Books.Find(id);
             db.Books.Remove(book);
             db.SaveChanges();
-            return RedirectToAction("Details", new { id = book.Book_Id });
+            return RedirectToAction("Index");
         }
 
         // GET: Books/Create
@@ -119,7 +119,6 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(book);
         }
 
