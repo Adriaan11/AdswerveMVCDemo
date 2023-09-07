@@ -6,12 +6,12 @@
 }
 
 <div class="container mt-5">
-    <h2>Book Collection</h2>
-    <p>
-        <a href="@Url.Action("Create")" class="btn btn-primary">Add New Book</a>
+    <h2 class="text-center">Book Collection</h2>
+    <p class="text-center">
+        <a href="@Url.Action("Create")"  style="margin-left: 5px" class="btn btn-primary">Add New Book</a>
     </p>
-    <table class="table">
-        <thead>
+    <table class="table table-striped">
+        <thead class="thead-dark">
             <tr>
                 <th>Title</th>
                 <th>Author</th>
@@ -29,9 +29,9 @@
                     <td>@string.Format("{0:C}", item.Price)</td>
                     <td>@Html.DisplayFor(modelItem => item.Quantity_Available)</td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Book_Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Book_Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Book_Id })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Book_Id }, new { @class = "btn btn-warning btn-sm" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Book_Id }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Book_Id }, new { @class = "btn btn-danger btn-sm" })
                     </td>
                 </tr>
             }
