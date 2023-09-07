@@ -2,6 +2,7 @@
 using AdswerveMVCDemoAdriaanCroucamp.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -38,5 +39,22 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
 
             return View(book);
         }
+
+        // POST method to update book
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(book).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(book);
+        }
+
+        // GET: Books/Edit/5
+
     }
 }
