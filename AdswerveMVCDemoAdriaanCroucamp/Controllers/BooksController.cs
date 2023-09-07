@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AdswerveMVCDemoAdriaanCroucamp.Data;
+using AdswerveMVCDemoAdriaanCroucamp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,14 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
 {
     public class BooksController : Controller
     {
-        // GET: Books
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        // GET method for list/index
         public ActionResult Index()
         {
-            return View();
+            var books = db.Books.ToList();
+            return View(books);
+
         }
     }
 }

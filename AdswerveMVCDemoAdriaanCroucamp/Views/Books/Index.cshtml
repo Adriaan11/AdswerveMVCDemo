@@ -1,0 +1,40 @@
+﻿@model IEnumerable<AdswerveMVCDemoAdriaanCroucamp.Models.Book>
+
+@{
+    ViewBag.Title = "Book Collection";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2>Book Collection</h2>
+    <p>
+        <a href="@Url.Action("Create")" class="btn btn-primary">Add New Book</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Quantity Available</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                    <td>@string.Format("{0:C}", item.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Quantity_Available)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Book_Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Book_Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Book_Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
