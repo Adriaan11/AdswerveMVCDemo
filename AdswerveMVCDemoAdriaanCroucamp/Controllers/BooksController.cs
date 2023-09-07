@@ -54,7 +54,22 @@ namespace AdswerveMVCDemoAdriaanCroucamp.Controllers
             return View(book);
         }
 
-        // GET: Books/Edit/5
+        // GET: Books/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
+            var book = db.Books.Find(id);
+
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(book);
+        }
     }
 }
